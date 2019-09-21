@@ -55,7 +55,7 @@ def write_pin(pin_df: pd.DataFrame, pin_file: str) -> str:
     """
     with open(pin_file, "w") as pin_out:
         header = "\t".join(pin_df.columns.tolist()) + "\n"
-        data = (pin_df.astype(str) + "\t").sum(axis=1) + "\n"
+        data = ((pin_df.astype(str) + "\t").sum(axis=1) + "\n").tolist()
         pin_out.writelines(tqdm.tqdm([header] + data, ascii=True,
                                      desc=pin_file, unit=" lines"))
 
