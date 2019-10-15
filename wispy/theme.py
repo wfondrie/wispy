@@ -54,7 +54,15 @@ def paper() -> Tuple[str]:
         Colors in the color palette.
     """
     sns.set_context("paper")
-    sns.despine()
-    palette = sns.color_palette()
+    style = { "axes.spines.bottom": True,
+              "axes.spines.left": True,
+              "axes.spines.right": False,
+              "axes.spines.top": False,
+              "axes.edgecolor": "0",
+              "xtick.bottom": True,
+              "ytick.left": True}
+    palette = sns.color_palette("deep")
+    sns.set_palette(palette)
+    sns.set_style("ticks", rc=style)
 
     return palette
