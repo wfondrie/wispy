@@ -42,6 +42,32 @@ def poster(fg_color: str = "#404040", accent: str = "#01BCA3") -> Tuple[str]:
     sns.set_context("poster", rc={"lines.linewidth": 4})
     sns.set_palette(palette)
     sns.set_style("ticks", style)
+    return palette
+
+
+def talk(fg_color: str = "#404040", accent: str = "#01BCA3") -> Tuple[str]:
+    """
+    Use my slide figure style.
+
+    To use this style properly, the Roboto font must be installed.
+
+    Parameters
+    ----------
+    fg_color : str
+        The main color used for plots. This is also the second color
+        in the palette
+    accent : str
+        The color used for important data points. This is the first
+        color in the color palette
+
+    Returns
+    -------
+    Tuple[str]
+        Colors in the color palette.
+    """
+    poster(fg_color, accent)
+    sns.set_context("talk", rc={"lines.linewidth": 2})
+
 
 
 def paper() -> Tuple[str]:
