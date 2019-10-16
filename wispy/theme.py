@@ -65,9 +65,9 @@ def talk(fg_color: str = "#404040", accent: str = "#01BCA3") -> Tuple[str]:
     Tuple[str]
         Colors in the color palette.
     """
-    poster(fg_color, accent)
-    sns.set_context("talk", rc={"lines.linewidth": 2})
-
+    palette = poster(fg_color, accent)
+    #sns.set_context("talk", rc={"lines.linewidth": 2})
+    return palette
 
 
 def paper() -> Tuple[str]:
