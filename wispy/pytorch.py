@@ -13,7 +13,7 @@ class FastMNIST(MNIST):
     I copied this from:
     https://gist.github.com/y0ast/f69966e308e549f013a92dc66debeeb4
     """
-    def __init__(self, *args, **kwargs):
+    def __init__(self, device, *args, **kwargs):
         """Instantiate an object"""
         super().__init__(*args, **kwargs)
 
