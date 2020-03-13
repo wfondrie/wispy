@@ -13,7 +13,7 @@ class FastMNIST(MNIST):
     I copied this from:
     https://gist.github.com/y0ast/f69966e308e549f013a92dc66debeeb4
     """
-    def __init__(self, device, *args, **kwargs):
+    def __init__(self, device=torch.device("cpu"), *args, **kwargs):
         """Instantiate an object"""
         super().__init__(*args, **kwargs)
 
@@ -61,7 +61,7 @@ class MLP(nn.Module):
         The number of neurons in each hidden layer. Each element
         specifies a new hidden layer.
     """
-    def __init__(self, input_dim, hidden_dims, output_dim):
+    def __init__(self, input_dim, hidden_dims, output_dim, leaky_relu_slope=0.2):
         """Instantiate an MLP object"""
         super(MLP, self).__init__()
         layers = hidden_dims
@@ -86,7 +86,7 @@ class MLP(nn.Module):
             # Don't add leaky ReLU to output layer:
             if idx < len(in_layers) - 1:
                 self.add_module("leakyReLU_{}".format(idx),
-                                nn.LeakyReLU())
+                                nn.LeakyReLU(negative_slope=leaky_relu_slope))
 
 
     def forward(self, x):
