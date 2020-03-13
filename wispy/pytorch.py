@@ -13,7 +13,7 @@ class FastMNIST(MNIST):
     I copied this from:
     https://gist.github.com/y0ast/f69966e308e549f013a92dc66debeeb4
     """
-    def __init__(self, device=torch.device("cpu"), *args, **kwargs):
+    def __init__(self, device=torch.device("cpu"), normalize=False, *args, **kwargs):
         """Instantiate an object"""
         super().__init__(*args, **kwargs)
 
@@ -21,7 +21,8 @@ class FastMNIST(MNIST):
         self.data = self.data.unsqueeze(1).float().div(255)
 
         # Normalize it with the usual MNIST mean and std
-        self.data = self.data.sub_(0.1307).div_(0.3081)
+        if normalize:
+            self.data = self.data.sub_(0.1307).div_(0.3081)
 
         # Put both data and targets on GPU in advance
         self.data, self.targets = self.data.to(device), self.targets.to(device)
