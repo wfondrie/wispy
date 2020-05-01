@@ -62,7 +62,8 @@ class MLP(nn.Module):
         The number of neurons in each hidden layer. Each element
         specifies a new hidden layer.
     """
-    def __init__(self, input_dim, hidden_dims, output_dim, leaky_relu_slope=0.2):
+    def __init__(self, input_dim, hidden_dims, output_dim, leaky_relu_slope=0.2,
+                 batchnorm=False):
         """Instantiate an MLP object"""
         super(MLP, self).__init__()
         layers = hidden_dims
@@ -88,6 +89,10 @@ class MLP(nn.Module):
             if idx < len(in_layers) - 1:
                 self.add_module("leakyReLU_{}".format(idx),
                                 nn.LeakyReLU(negative_slope=leaky_relu_slope))
+
+                if batchnorm:
+                    self.add_module("BatchNorm_{}".format(idx),
+                                    nn.BatchNorm1d(out_layers[idx]))
 
 
     def forward(self, x):
