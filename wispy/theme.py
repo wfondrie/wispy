@@ -87,6 +87,7 @@ def paper() -> Tuple[str]:
               "axes.edgecolor": "0",
               "xtick.bottom": True,
               "ytick.left": True}
+    plt.rcParams["legend.frameon"] = False
     palette = sns.color_palette("deep")
     sns.set_palette(palette)
     sns.set_style("ticks", rc=style)
